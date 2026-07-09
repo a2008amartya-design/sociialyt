@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Mail, Phone, MapPin } from "lucide-react";
+import logoUrl from "@/assets/socialyt-logo.png";
 
 export function Footer() {
   return (
@@ -7,8 +8,16 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Link to="/" className="text-2xl font-semibold tracking-tight">
-              Socialyt
+            <Link to="/" className="inline-flex items-center gap-2.5">
+              <img
+                src={logoUrl}
+                alt="Socialyt"
+                width={36}
+                height={36}
+                className="h-9 w-9 rounded-full"
+                loading="lazy"
+              />
+              <span className="text-2xl font-semibold tracking-tight">Socialyt</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
               A full-stack growth partner — websites, ads, creatives, and organic
