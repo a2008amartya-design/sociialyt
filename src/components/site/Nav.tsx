@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Instagram, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import logoUrl from "@/assets/socialyt-logo.png";
 
 const links = [
   { to: "/", label: "Home" },
