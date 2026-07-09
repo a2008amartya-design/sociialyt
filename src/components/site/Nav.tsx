@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Instagram, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import logoUrl from "@/assets/socialyt-logo.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -35,8 +36,15 @@ export function Nav() {
             : "bg-transparent border border-transparent",
         )}
       >
-        <Link to="/" className="text-lg font-semibold tracking-tight">
-          Socialyt
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src={logoUrl}
+            alt="Socialyt"
+            width={28}
+            height={28}
+            className="h-7 w-7 rounded-full"
+          />
+          <span className="text-lg font-semibold tracking-tight">Socialyt</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
