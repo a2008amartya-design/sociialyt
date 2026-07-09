@@ -77,14 +77,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Socialyt — Turn Attention Into Growth" },
+      {
+        name: "description",
+        content:
+          "Socialyt is a full-stack growth partner — websites, ads, creatives and organic social growth, all in one place.",
+      },
+      { name: "author", content: "Socialyt" },
+      { property: "og:title", content: "Socialyt — Turn Attention Into Growth" },
+      {
+        property: "og:description",
+        content:
+          "A social-first growth studio. Websites, Meta Ads, video creatives and organic growth.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

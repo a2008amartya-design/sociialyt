@@ -9,38 +9,163 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesPackagesRouteImport } from './routes/services.packages'
+import { Route as ServicesIndividualPlansRouteImport } from './routes/services.individual-plans'
+import { Route as ServicesPackagesIndexRouteImport } from './routes/services.packages.index'
+import { Route as ServicesPackagesFoundationRouteImport } from './routes/services.packages.foundation'
+import { Route as ServicesPackagesCustomRouteImport } from './routes/services.packages.custom'
+import { Route as ServicesPackagesConvertRouteImport } from './routes/services.packages.convert'
 
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesPackagesRoute = ServicesPackagesRouteImport.update({
+  id: '/packages',
+  path: '/packages',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesIndividualPlansRoute = ServicesIndividualPlansRouteImport.update({
+  id: '/individual-plans',
+  path: '/individual-plans',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesPackagesIndexRoute = ServicesPackagesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ServicesPackagesRoute,
+} as any)
+const ServicesPackagesFoundationRoute =
+  ServicesPackagesFoundationRouteImport.update({
+    id: '/foundation',
+    path: '/foundation',
+    getParentRoute: () => ServicesPackagesRoute,
+  } as any)
+const ServicesPackagesCustomRoute = ServicesPackagesCustomRouteImport.update({
+  id: '/custom',
+  path: '/custom',
+  getParentRoute: () => ServicesPackagesRoute,
+} as any)
+const ServicesPackagesConvertRoute = ServicesPackagesConvertRouteImport.update({
+  id: '/convert',
+  path: '/convert',
+  getParentRoute: () => ServicesPackagesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/individual-plans': typeof ServicesIndividualPlansRoute
+  '/services/packages': typeof ServicesPackagesRouteWithChildren
+  '/services/': typeof ServicesIndexRoute
+  '/services/packages/convert': typeof ServicesPackagesConvertRoute
+  '/services/packages/custom': typeof ServicesPackagesCustomRoute
+  '/services/packages/foundation': typeof ServicesPackagesFoundationRoute
+  '/services/packages/': typeof ServicesPackagesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/services/individual-plans': typeof ServicesIndividualPlansRoute
+  '/services': typeof ServicesIndexRoute
+  '/services/packages/convert': typeof ServicesPackagesConvertRoute
+  '/services/packages/custom': typeof ServicesPackagesCustomRoute
+  '/services/packages/foundation': typeof ServicesPackagesFoundationRoute
+  '/services/packages': typeof ServicesPackagesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/services/individual-plans': typeof ServicesIndividualPlansRoute
+  '/services/packages': typeof ServicesPackagesRouteWithChildren
+  '/services/': typeof ServicesIndexRoute
+  '/services/packages/convert': typeof ServicesPackagesConvertRoute
+  '/services/packages/custom': typeof ServicesPackagesCustomRoute
+  '/services/packages/foundation': typeof ServicesPackagesFoundationRoute
+  '/services/packages/': typeof ServicesPackagesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/services'
+    | '/services/individual-plans'
+    | '/services/packages'
+    | '/services/'
+    | '/services/packages/convert'
+    | '/services/packages/custom'
+    | '/services/packages/foundation'
+    | '/services/packages/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contact'
+    | '/services/individual-plans'
+    | '/services'
+    | '/services/packages/convert'
+    | '/services/packages/custom'
+    | '/services/packages/foundation'
+    | '/services/packages'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/services'
+    | '/services/individual-plans'
+    | '/services/packages'
+    | '/services/'
+    | '/services/packages/convert'
+    | '/services/packages/custom'
+    | '/services/packages/foundation'
+    | '/services/packages/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +173,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/': {
+      id: '/services/'
+      path: '/'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/packages': {
+      id: '/services/packages'
+      path: '/packages'
+      fullPath: '/services/packages'
+      preLoaderRoute: typeof ServicesPackagesRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/individual-plans': {
+      id: '/services/individual-plans'
+      path: '/individual-plans'
+      fullPath: '/services/individual-plans'
+      preLoaderRoute: typeof ServicesIndividualPlansRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/packages/': {
+      id: '/services/packages/'
+      path: '/'
+      fullPath: '/services/packages/'
+      preLoaderRoute: typeof ServicesPackagesIndexRouteImport
+      parentRoute: typeof ServicesPackagesRoute
+    }
+    '/services/packages/foundation': {
+      id: '/services/packages/foundation'
+      path: '/foundation'
+      fullPath: '/services/packages/foundation'
+      preLoaderRoute: typeof ServicesPackagesFoundationRouteImport
+      parentRoute: typeof ServicesPackagesRoute
+    }
+    '/services/packages/custom': {
+      id: '/services/packages/custom'
+      path: '/custom'
+      fullPath: '/services/packages/custom'
+      preLoaderRoute: typeof ServicesPackagesCustomRouteImport
+      parentRoute: typeof ServicesPackagesRoute
+    }
+    '/services/packages/convert': {
+      id: '/services/packages/convert'
+      path: '/convert'
+      fullPath: '/services/packages/convert'
+      preLoaderRoute: typeof ServicesPackagesConvertRouteImport
+      parentRoute: typeof ServicesPackagesRoute
+    }
   }
 }
 
+interface ServicesPackagesRouteChildren {
+  ServicesPackagesConvertRoute: typeof ServicesPackagesConvertRoute
+  ServicesPackagesCustomRoute: typeof ServicesPackagesCustomRoute
+  ServicesPackagesFoundationRoute: typeof ServicesPackagesFoundationRoute
+  ServicesPackagesIndexRoute: typeof ServicesPackagesIndexRoute
+}
+
+const ServicesPackagesRouteChildren: ServicesPackagesRouteChildren = {
+  ServicesPackagesConvertRoute: ServicesPackagesConvertRoute,
+  ServicesPackagesCustomRoute: ServicesPackagesCustomRoute,
+  ServicesPackagesFoundationRoute: ServicesPackagesFoundationRoute,
+  ServicesPackagesIndexRoute: ServicesPackagesIndexRoute,
+}
+
+const ServicesPackagesRouteWithChildren =
+  ServicesPackagesRoute._addFileChildren(ServicesPackagesRouteChildren)
+
+interface ServicesRouteChildren {
+  ServicesIndividualPlansRoute: typeof ServicesIndividualPlansRoute
+  ServicesPackagesRoute: typeof ServicesPackagesRouteWithChildren
+  ServicesIndexRoute: typeof ServicesIndexRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesIndividualPlansRoute: ServicesIndividualPlansRoute,
+  ServicesPackagesRoute: ServicesPackagesRouteWithChildren,
+  ServicesIndexRoute: ServicesIndexRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
