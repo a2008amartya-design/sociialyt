@@ -119,7 +119,12 @@ function ContactPage() {
               </h3>
               <ul className="mt-6 space-y-5 text-sm">
                 <li>
-                  <a href="mailto:socialyt@gmail.com" className="group flex items-start gap-3 hover:text-[oklch(0.58_0.24_259)]">
+                  <a
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=socialyt@gmail.com&su=${encodeURIComponent("Enquiry from Socialyt website")}&body=${encodeURIComponent("Hi Socialyt team,\n\nI'd like to know more about...")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-start gap-3 hover:text-[oklch(0.58_0.24_259)]"
+                  >
                     <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[oklch(0.58_0.24_259)]/10 text-[oklch(0.58_0.24_259)]">
                       <Mail className="h-4 w-4" />
                     </span>
