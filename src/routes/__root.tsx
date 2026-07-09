@@ -88,10 +88,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "A social-first growth studio. Websites, Meta Ads, video creatives and organic growth.",
+          "Socialyt is a full-stack growth partner — websites, ads, creatives and organic social growth, all in one place.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Socialyt — Turn Attention Into Growth" },
+      { name: "twitter:description", content: "Socialyt is a full-stack growth partner — websites, ads, creatives and organic social growth, all in one place." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/cb7343dc-1798-400c-b670-9b086d5c0d71/id-preview-c1706439--4de4876e-dd4b-4d66-9de6-3f71fefa79a2.lovable.app-1783594263719.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/cb7343dc-1798-400c-b670-9b086d5c0d71/id-preview-c1706439--4de4876e-dd4b-4d66-9de6-3f71fefa79a2.lovable.app-1783594263719.png" },
     ],
     links: [
       {
