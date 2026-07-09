@@ -30,7 +30,7 @@ function ContactPage() {
       `Hi Socialyt team,\n\nName: ${name}\nEmail: ${email}\n\n${message}`,
     );
     window.open(
-      `https://mail.google.com/mail/?view=cm&fs=1&to=socialyt@gmail.com&su=${subject}&body=${body}`,
+      `https://mail.google.com/mail/?view=cm&fs=1&to=sociialyt@gmail.com&su=${subject}&body=${body}`,
       "_blank",
       "noopener,noreferrer",
     );
@@ -120,7 +120,7 @@ function ContactPage() {
               <ul className="mt-6 space-y-5 text-sm">
                 <li>
                   <a
-                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=socialyt@gmail.com&su=${encodeURIComponent("Enquiry from Socialyt website")}&body=${encodeURIComponent("Hi Socialyt team,\n\nI'd like to know more about...")}`}
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=sociialyt@gmail.com&su=${encodeURIComponent("Enquiry from Socialyt website")}&body=${encodeURIComponent("Hi Socialyt team,\n\nI'd like to know more about...")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-start gap-3 hover:text-[oklch(0.58_0.24_259)]"
@@ -130,7 +130,7 @@ function ContactPage() {
                     </span>
                     <span>
                       <span className="block text-xs text-muted-foreground">Email</span>
-                      <span className="font-medium">socialyt@gmail.com</span>
+                      <span className="font-medium">sociialyt@gmail.com</span>
                     </span>
                   </a>
                 </li>

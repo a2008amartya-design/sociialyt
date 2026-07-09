@@ -30,12 +30,12 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li>
                 <a
-                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=socialyt@gmail.com&su=${encodeURIComponent("Enquiry from Socialyt website")}&body=${encodeURIComponent("Hi Socialyt team,\n\nI'd like to know more about...")}`}
+                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=sociialyt@gmail.com&su=${encodeURIComponent("Enquiry from Socialyt website")}&body=${encodeURIComponent("Hi Socialyt team,\n\nI'd like to know more about...")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 hover:text-foreground"
                 >
-                  <Mail className="h-3.5 w-3.5" /> socialyt@gmail.com
+                  <Mail className="h-3.5 w-3.5" /> sociialyt@gmail.com
                 </a>
               </li>
               <li>
