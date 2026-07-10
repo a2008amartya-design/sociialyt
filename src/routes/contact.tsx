@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
-import { Instagram, Mail, MapPin, Phone, Send } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
+import { CalendarDays, Instagram, Mail, MapPin, MessageSquare, Phone, Send } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { GlassCard } from "@/components/site/GlassCard";
 import { Reveal } from "@/components/site/Reveal";
+import { CalEmbed } from "@/components/cal-embed";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
