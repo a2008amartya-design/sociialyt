@@ -23,6 +23,18 @@ function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [tab, setTab] = useState<"message" | "call">("message");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.location.hash === "#book-a-call") {
+      setTab("call");
+      // Scroll after paint
+      requestAnimationFrame(() => {
+        document.getElementById("book-a-call")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }, []);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
