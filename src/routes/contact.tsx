@@ -69,8 +69,8 @@ function ContactPage() {
           </p>
         </Reveal>
 
-        <div id="book-a-call" className="mt-16 grid gap-6 md:grid-cols-5">
-          <Reveal delay={100} className="md:col-span-3">
+        <div id="book-a-call" className="mt-16 space-y-6">
+          <Reveal delay={100}>
             <GlassCard strong className="p-8 md:p-10">
               <div className="mb-6 inline-flex rounded-full border border-border/60 bg-white/60 p-1 text-sm">
                 <button
@@ -154,8 +154,8 @@ function ContactPage() {
             </GlassCard>
           </Reveal>
 
-          <Reveal delay={200} className="md:col-span-2">
-            <GlassCard className="h-full p-8 md:p-10">
+          <Reveal delay={200}>
+            <GlassCard className="p-8 md:p-10">
               <h3 className="text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground">
                 Contact Info
               </h3>
