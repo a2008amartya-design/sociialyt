@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
-import { Instagram, Mail, MapPin, Phone, Send } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
+import { CalendarDays, Instagram, Mail, MapPin, MessageSquare, Phone, Send } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { GlassCard } from "@/components/site/GlassCard";
 import { Reveal } from "@/components/site/Reveal";
+import { CalEmbed } from "@/components/cal-embed";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -22,6 +23,18 @@ function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [tab, setTab] = useState<"message" | "call">("message");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.location.hash === "#book-a-call") {
+      setTab("call");
+      // Scroll after paint
+      requestAnimationFrame(() => {
+        document.getElementById("book-a-call")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }, []);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -56,59 +69,88 @@ function ContactPage() {
           </p>
         </Reveal>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-5">
+        <div id="book-a-call" className="mt-16 grid gap-6 md:grid-cols-5">
           <Reveal delay={100} className="md:col-span-3">
             <GlassCard strong className="p-8 md:p-10">
-              <form onSubmit={onSubmit} className="space-y-5">
-                <div>
-                  <label className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
-                    Name
-                  </label>
-                  <input
-                    required
-                    maxLength={100}
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-border/60 bg-white/70 px-4 py-3 text-base outline-none transition focus:border-[oklch(0.58_0.24_259)] focus:bg-white"
-                    placeholder="Your full name"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
-                    Email
-                  </label>
-                  <input
-                    required
-                    type="email"
-                    maxLength={255}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-border/60 bg-white/70 px-4 py-3 text-base outline-none transition focus:border-[oklch(0.58_0.24_259)] focus:bg-white"
-                    placeholder="you@company.com"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
-                    Message
-                  </label>
-                  <textarea
-                    required
-                    rows={5}
-                    maxLength={2000}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-border/60 bg-white/70 px-4 py-3 text-base outline-none transition focus:border-[oklch(0.58_0.24_259)] focus:bg-white"
-                    placeholder="What are you looking to grow?"
-                  />
-                </div>
+              <div className="mb-6 inline-flex rounded-full border border-border/60 bg-white/60 p-1 text-sm">
                 <button
-                  type="submit"
-                  className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition hover:scale-[1.03]"
+                  type="button"
+                  onClick={() => setTab("message")}
+                  className={`inline-flex items-center gap-2 rounded-full px-4 py-2 font-medium transition ${
+                    tab === "message"
+                      ? "bg-foreground text-background"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
-                  Send Message
-                  <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  <MessageSquare className="h-4 w-4" /> Send a message
                 </button>
-              </form>
+                <button
+                  type="button"
+                  onClick={() => setTab("call")}
+                  className={`inline-flex items-center gap-2 rounded-full px-4 py-2 font-medium transition ${
+                    tab === "call"
+                      ? "bg-foreground text-background"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <CalendarDays className="h-4 w-4" /> Book a call
+                </button>
+              </div>
+
+              {tab === "message" ? (
+                <form onSubmit={onSubmit} className="space-y-5">
+                  <div>
+                    <label className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
+                      Name
+                    </label>
+                    <input
+                      required
+                      maxLength={100}
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="mt-2 w-full rounded-2xl border border-border/60 bg-white/70 px-4 py-3 text-base outline-none transition focus:border-[oklch(0.58_0.24_259)] focus:bg-white"
+                      placeholder="Your full name"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
+                      Email
+                    </label>
+                    <input
+                      required
+                      type="email"
+                      maxLength={255}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="mt-2 w-full rounded-2xl border border-border/60 bg-white/70 px-4 py-3 text-base outline-none transition focus:border-[oklch(0.58_0.24_259)] focus:bg-white"
+                      placeholder="you@company.com"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
+                      Message
+                    </label>
+                    <textarea
+                      required
+                      rows={5}
+                      maxLength={2000}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="mt-2 w-full rounded-2xl border border-border/60 bg-white/70 px-4 py-3 text-base outline-none transition focus:border-[oklch(0.58_0.24_259)] focus:bg-white"
+                      placeholder="What are you looking to grow?"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition hover:scale-[1.03]"
+                  >
+                    Send Message
+                    <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </button>
+                </form>
+              ) : (
+                <CalEmbed />
+              )}
             </GlassCard>
           </Reveal>
 
