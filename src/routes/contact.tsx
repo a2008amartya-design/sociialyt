@@ -154,8 +154,8 @@ function ContactPage() {
             </GlassCard>
           </Reveal>
 
-          <Reveal delay={200} className="md:col-span-2">
-            <GlassCard className="h-full p-8 md:p-10">
+          <Reveal delay={200}>
+            <GlassCard className="p-8 md:p-10">
               <h3 className="text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground">
                 Contact Info
               </h3>
